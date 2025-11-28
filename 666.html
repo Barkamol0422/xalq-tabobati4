@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Xalq Tabobati AI Maslahatchisi — Rivojlantirilgan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+      .tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.btn {
+  margin-top: 40px;
+}
+.tabs .btn {
+  flex: 1;
+  text-align: center;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.tabs .btn:hover {
+  background: var(--accent-2);
+  transform: translateY(-2px);
+}
+
+.tabs .btn:active {
+  transform: translateY(0);
+}
+
+  :root{
+    --bg1:#c1f0f6; --bg2:#f0c1f6; --card:#ffffff; --muted:#6b7280;
+    --accent:#16a34a; --danger:#dc2626; --glass: rgba(255,255,255,0.7);
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin:0; padding:24px; background: linear-gradient(135deg,var(--bg1),var(--bg2));
+    color:#083344;
+  }
+  .wrap{max-width:1100px;margin:0 auto;}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .logo{background:var(--card);padding:10px;border-radius:10px;box-shadow:0 6px 18px rgba(12,74,110,0.08)}
+  h1{font-size:20px;margin:0}
+  p.lead{margin:0;color:var(--muted);font-size:14px}
+
+  /* top table */
+  .quick-table{background:var(--card);border-radius:14px;padding:16px;margin-bottom:18px;box-shadow:0 8px 30px rgba(7,24,32,0.06)}
+  .quick-table h2{margin:0 0 10px 0;font-size:16px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:10px;border:1px solid #e6eef3;text-align:left}
+  th{background:#f3faf6;color:#064e3b}
+  @media (max-width:760px){table,thead,tbody,tr,th,td{display:block} th{display:none} td{border:none;padding:10px 0} td::before{content:attr(data-label);font-weight:600;display:block;margin-bottom:6px;color:var(--muted)}}
+
+  /* main form card */
+  .card{background:var(--card);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(7,24,32,0.08);display:grid;grid-template-columns:1fr 420px;gap:18px}
+  @media(max-width:980px){.card{grid-template-columns:1fr}}
+  .controls label{display:block;font-weight:600;margin-top:8px}
+  .controls input[type="number"], .controls select, .controls button{width:100%;padding:12px;border-radius:10px;border:1px solid #dbe7ee;font-size:15px}
+  .controls button{background:var(--accent);color:white;border:none;cursor:pointer;margin-top:12px}
+  .controls .muted{font-size:13px;color:var(--muted);margin-top:6px}
+
+  /* questions / result */
+  .panel{background:linear-gradient(180deg,#f8fafc,#ffffff);border-radius:12px;padding:14px;min-height:120px}
+  .panel h3{margin:0 0 8px 0}
+  .question {margin-bottom:12px}
+  .question select{width:100%;padding:10px;border-radius:8px;border:1px solid #e0eef4}
+  .resultBox{margin-top:12px;padding:12px;background:#f3f7ff;border-radius:8px}
+
+  .massaj{background:#fffef6;padding:12px;border-radius:10px;border:1px solid #f0e6cc}
+  .planTable{width:100%;border-collapse:collapse;margin-top:8px}
+  .planTable th, .planTable td{border:1px solid #e6eef3;padding:8px;text-align:left}
+  .planTable th{background:#f9fff6;color:#14532d}
+
+  /* actions */
+  .actions{display:flex;gap:8px;margin-top:12px}
+  .btn-ghost{background:transparent;border:1px solid #d0dde3;padding:10px;border-radius:8px;cursor:pointer}
+  .btn-copy{background:#0ea5a3;color:#fff;border:none;padding:10px;border-radius:8px;cursor:pointer}
+
+  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* tooltip small */
+  .hint{font-size:12px;color:var(--muted);margin-top:6px}
+
+  /* update box */
+  .updates{background:linear-gradient(90deg,#fff, #f7fff9);padding:12px;border-radius:10px;border:1px dashed #dff7e6;margin-bottom:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo" aria-hidden="true">
+      <!-- simple svg -->
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#16a34a"/>
+        <path d="M8 12.5L11 15L16 9.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h1>Xalq Tabobati AI Maslahatchisi</h1>
+      <p class="lead">6 ta asosiy simptom uchun yoshga mos, savol-javob bilan aniqroq tavsiya va 3 kunlik davolash rejalari.</p>
+    </div>
+  </header>
+      <div class="tabs" style="display:flex;gap:12px;margin-bottom:16px">
+        <button class="btn" onclick="window.location.href='index.html'">Umumiy kasalliklar</button>
+        <button class="btn" onclick="window.location.href='666.html'">Maslahat olish</button>
+      </div>
+
+  <!-- quick reference table -->
+  <section class="quick-table" aria-labelledby="quickTitle">
+    <h2 id="quickTitle">Tezkor tavsiyalar jadvali</h2>
+    <div style="overflow:auto">
+      <table>
+        <thead>
+          <tr><th>Kasallik</th><th>Asosiy sabablar</th><th>Uyda yordam</th><th>Shifokorga murojaat</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bel og‘rig‘i</td><td>Mushak zo‘riqishi, sovqotish</td><td>Issiq kompress, yumshoq aylana massaj</td><td>3 kundan ortiq yoki oyoqqa tarqasa</td></tr>
+          <tr><td>Oyoq og‘rig‘i</td><td>Cho‘zilish, travma</td><td>Sovuq kompress, oyoqni ko‘tarib dam</td><td>Shish/ko‘karish bo‘lsa</td></tr>
+          <tr><td>Kuyish</td><td>Issiqlik, kimyoviy moddalar</td><td>Sovuq suv ostida yuvish, sterile bint</td><td>Pufaklar yoki keng yiring</td></tr>
+          <tr><td>Tish og‘rig‘i</td><td>Karies, yallig‘lanish</td><td>12+ uchun tuzli suv, sovuq kompress</td><td>Shish/isitma bo‘lsa</td></tr>
+          <tr><td>Qo‘l sinishi</td><td>Yiqilish, zarba</td><td>Harakatsiz, sovuq kompress</td><td>Darhol shifoxona</td></tr>
+          <tr><td>Bo‘yin og‘rig‘i</td><td>Noto‘g‘ri uyqu, shamollash</td><td>Issiq kompress, cho‘zish</td><td>Qo‘lga tarqovchi uvishish bo‘lsa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- update area -->
+  <section class="updates" role="region" aria-live="polite">
+    <strong>Yangiliklar:</strong> 2025-11-28 — Massaj texnikalari va yoshga mos tavsiyalar qo‘shildi. <em id="updatesText"></em>
+  </section>
+
+  <!-- main card -->
+  <main class="card" role="main">
+    <div class="controls" aria-label="Form Controls">
+      <label for="age">Yoshingiz</label>
+      <input id="age" type="number" min="1" max="120" placeholder="Masalan: 30" />
+
+      <label for="gender">Jins (ixtiyoriy)</label>
+      <select id="gender"><option value="">— Tanlamoq —</option><option value="erkak">Erkak</option><option value="ayol">Ayol</option></select>
+
+      <label for="symptom">Simptom / Kasallikni tanlang</label>
+      <select id="symptom" aria-describedby="symptomHint">
+        <option value="">-- Tanlang --</option>
+        <option value="bel">Bel og‘rig‘i</option>
+        <option value="oyoq">Oyoq og‘rig‘i</option>
+        <option value="kuyish">Kuyish (teri)</option>
+        <option value="tish">Tish og‘rig‘i</option>
+        <option value="qol">Qo‘l sinishi</option>
+        <option value="boyin">Bo‘yin og‘rig‘i</option>
+      </select>
+      <div id="symptomHint" class="hint">12 yoshgacha bo‘lgan bolalarda: ogʻiz chayish tavsiyalari avtomatik olib tashlanadi.</div>
+
+      <button id="startBtn" type="button">Savollarni boshlash</button>
+
+      <div class="hint">Qo‘shimcha: sahifa natijani yuklab olish yoki chop etish imkonini beradi.</div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn-ghost" id="saveBtn" type="button" title="Saqlash">Saqlash</button>
+        <button class="btn-ghost" id="printBtn" type="button" title="Chop etish">Chop etish</button>
+        <button class="btn-copy" id="copyBtn" type="button" title="Natijani nusxalash">Nusxalash</button>
+      </div>
+    </div>
+
+    <aside class="panel" aria-live="polite">
+      <h3 id="qTitle">Savollar va natija</h3>
+      <div id="questionsArea">
+        <p class="hint">Avval kasallik tanlang va "Savollarni boshlash" tugmasini bosing — keyin sorovnoma chiqadi.</p>
+      </div>
+
+      <div id="resultArea" style="margin-top:10px"></div>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Ushbu vosita faqat ta'limiy maqsadda. Og‘ir holatlarda shifokorga murojaat qiling.</small>
+  </footer>
+</div>
+
+<script>
+/* --- Data and logic --- */
+const QUESTIONS = {
+  bel: [
+    {q:"Og‘riq oyoqqa tarqayaptimi?", key:"rad"},
+    {q:"Og‘riq to‘satdan boshlanganmi?", key:"sudden"},
+    {q:"Og‘ir yuk ko‘targanmisiz?", key:"heavy"}
+  ],
+  oyoq: [
+    {q:"Oyoqda shish bormi?", key:"swelling"},
+    {q:"Yurishda og‘riq kuchayadimi?", key:"walking"},
+    {q:"Yiqilish bo‘lganmi?", key:"trauma"}
+  ],
+  kuyish: [
+    {q:"Kuygan joy pufaklab ketganmi?", key:"blister"},
+    {q:"Kuygan yuzasi katta (5 sm dan katta)mi?", key:"large"},
+    {q:"Issiq suyuqlik tegdimi?", key:"liquid"}
+  ],
+  tish: [
+    {q:"Issiq yoki sovuqda og‘riq kuchayadimi?", key:"temp"},
+    {q:"Og‘izda yiring hidi bormi?", key:"pus"},
+    {q:"Yonoq shishganmi?", key:"swollen"}
+  ],
+  qol: [
+    {q:"Qo‘lni umuman qimirlatolmaysizmi?", key:"immobile"},
+    {q:"Kuchli shish bormi?", key:"big_swelling"},
+    {q:"Yiqilish bo‘lganmi?", key:"fell"}
+  ],
+  boyin: [
+    {q:"Bosh burilganda og‘riq kuchayadimi?", key:"turn"},
+    {q:"Bosh og‘riqi ham bormi?", key:"headache"},
+    {q:"Shamollaganmisiz?", key:"cold"}
+  ]
+};
+
+const PLANS = {
+  bel: [
+    ["Issiq kompress 15 daqiqa", "Belni aylana bo‘ylab 5 daqiqa silash (pastdan yuqoriga)","Og‘ir yuk ko‘tarishni cheklash"],
+    ["Yengil cho‘zish: tizzani ko‘tarib boshingizga yaqinlashtirish (har tomon 3 marta)","Issiq dush 10 daqiqa","Yengil yurish"],
+    ["Ortopedik yostiqdan foydalanish","Bel ostiga kichik yostiq qo‘yib yotish","Agar 3-kundan keyin ham og‘riq bo‘lsa shifokor"]
+  ],
+  oyoq: [
+    ["Sovuq kompress 15 daqiqa","Oyoqni baland qilib dam olish (30 daqiqa)","Yengil cho‘zish"],
+    ["Massaj: barmoqlardan tizzaga qarab 5 daqiqa silash","Issiq vannada 10 daqiqa dam","Yurishni kamaytirish"],
+    ["Oyoq uchun maxsus oyoq mashqlari","Agar shish va ko‘karish bo‘lsa shifokor","Strap yoki bandaj bilan qo‘llab-quvvatlash"]
+  ],
+  kuyish: [
+    ["Sovuq suv ostida 10 daqiqa (zudlik bilan)","Steril bint bilan yoping","Krem qo‘ymaslik (yoki faqat aloe vera)"],
+    ["Og‘riq bo‘lsa paratsetamol (yosh va dozaga e'tibor)","Bandajni yangilang","Kuzatish: pufak paydo bo‘lsa shifokor"],
+    ["Antiseptik bilan ehtiyot tozalash","Nam saqlash (ozgina aloe bilan)","Agar yiring yoki isitma bo‘lsa shifokor"]
+  ],
+  tish: [
+    ["Yonoqqa sovuq kompress 10 daqiqa (bosim emas)","Issiq-sovuq taomlardan saqlanish","Chinnigullar moyini og‘riq joyiga muloyim surish"],
+    ["Og‘izni asosan bolalar uchun: chayish tavsiya etilmaydi (12 yosh ostida)","Yoshi mos og‘riq qoldiruvchi faqat zarur bo‘lsa","Og‘riq davom etsa stomatologga murojaat"]
+  ],
+  qol: [
+    ["Qo‘lni harakatsiz qilish (sling)","Sovuq kompress 20 daqiqa","Og‘riq qoldiruvchi kerak bo‘lsa"],
+    ["Shifoxona yoki rentgen kerak bo‘lsa darhol boring","Gips bilan immobilizatsiya (shifokor tomonidan)","Qo‘lni ko‘tarib dam olish"]
+  ],
+  boyin: [
+    ["Issiq kompress 15 daqiqa","Bo‘yin mushagini cho‘zish: boshni sekin burish va cho‘zish (har tomon 5 marta)","Telefonni ko‘tarib emas, ko‘z darajasida tutish"],
+    ["Yengil massaj: quloq ostidan yelka tomon 5 daqiqa silash","Issiq dush","Agar qo‘lga tarqovchi uvishish bo‘lsa shifokor"]
+  ]
+};
+
+/* Massaj technique text for each condition */
+const MASSAGE_GUIDES = {
+  bel: `Bel massaji (qadamlar):
+1) Qo'lni ikkala tarafdan belga qo'ying. 2) Pastdan yuqoriga yumshoq silash harakatlari bilan 5-7 daqiqa aylantiring. 3) Og'riq joyiga kuch bilan bosmang. 4) Yengil silash tugagach, yengil surish bilan tugating.`,
+  oyoq: `Oyoq massaji:
+1) Oyoq tagidan barmoqlarga qarab muloyim silash. 2) Kaft bilan oyoq suyagiga parallel cho'zish harakatlari (5-10 daqiqa). 3) Shishni sezsangiz massajni kamaytiring.`,
+  tish: `Tish atrof massaji (12+):
+1) Toza barmoq bilan (yoki steril doka bilan) jag' mushagini 2-3 daqiqa yumshoq aylantirib silash. 2) To'g'ridan-to'g'ri tishga bosim bermang.`,
+  boyin: `Bo'yin massaji:
+1) Kaftni bo'yinga joylab, bo'yin va yelka mushaklarini pastdan yuqoriga 5 daqiqa davomida yumshoq aylantiring. 2) Boshni kuch bilan burmang.`,
+  qol: `Qo'l holatini tekshirib massaj:
+*Eslatma:* Qo'l singan mumkin bo'lsa massaj qat'iyan man etiladi. Agar shifokor ruxsat bersa, atrof mushaklarni yumshoq silash mumkin.`,
+  kuyish: `Kuyish uchun:
+Qattiq massaj taqiqlanadi. Faqat malham yoki aloe bilan muloyim surish va yengil tegish tavsiya etiladi.`
+};
+
+/* Helper: render select questions */
+function renderQuestions(symptom) {
+  const area = document.getElementById('questionsArea');
+  area.innerHTML = '';
+  if(!symptom) {
+    area.innerHTML = '<p class="hint">Kasallik tanlang va "Savollarni boshlash" tugmasini bosing.</p>';
+    return;
+  }
+  const list = QUESTIONS[symptom];
+  const frag = document.createElement('div');
+  list.forEach((it, idx) => {
+    const qdiv = document.createElement('div');
+    qdiv.className = 'question';
+    qdiv.innerHTML = `<label for="q${idx}">${it.q}</label>
+      <select id="q${idx}" data-key="${it.key}">
+        <option value="yoq">Yo‘q</option>
+        <option value="ha">Ha</option>
+      </select>`;
+    frag.appendChild(qdiv);
+  });
+  // Add pain level and duration for more nuance
+  frag.innerHTML += `
+    <div class="question"><label for="painLevel">Og‘riq darajasi</label>
+    <select id="painLevel"><option value="yengil">Yengil</option><option value="orta">O‘rta</option><option value="kuchli">Kuchli</option></select></div>
+    <div class="question"><label for="duration">Davomiyligi</label>
+    <select id="duration"><option value="birkun">1 kun</option><option value="hafta">1 hafta</option><option value="uzoq">1 haftadan ortiq</option></select></div>
+    <div style="margin-top:8px"><button id="diagBtn" type="button">Tashxis va reja</button></div>
+  `;
+  area.appendChild(frag);
+
+  document.getElementById('diagBtn').addEventListener('click', ()=> runDiagnosis(symptom));
+}
+
+/* Diagnosis algo (simple rule-based) */
+function runDiagnosis(symptom) {
+  const age = parseInt(document.getElementById('age').value);
+  if(!age || age < 1) { alert('Iltimos, to‘g‘ri yosh kiriting'); return; }
+  const answers = {};
+  const qEls = document.querySelectorAll('#questionsArea select');
+  qEls.forEach(s=> {
+    const k = s.dataset.key || s.id;
+    answers[k||s.id] = s.value;
+  });
+
+  // Build result
+  let diag = '';
+  // use rules for each symptom
+  if(symptom === 'bel') {
+    if(answers.rad === 'ha') diag = 'Taxmin: siyatik yoki radikulopatiya — agar oyoqqa tarqasa, shifokorga boring.';
+    else if(answers.sudden === 'ha' && answers.heavy === 'ha') diag = 'Taxmin: mushak zo‘riqishi yoki disk travmasi — dam olish va issiq kompress.';
+    else diag = 'Bel mushagi tarangligi (oddiy).';
+  }
+  else if(symptom === 'oyoq') {
+    if(answers.swelling === 'ha' && answers.fell === 'ha') diag = 'Taxmin: travmatik shikast — rentgen/tekshiruv kerak.';
+    else if(answers.walking === 'ha') diag = 'Mushak cho‘zilishi yoki tomir muammosi.';
+    else diag = 'Oddiy charchoq yoki kramplar.';
+  }
+  else if(symptom === 'kuyish') {
+    if(answers.blister === 'ha' || answers.large === 'ha') diag = 'II-darajali yoki keng kuyish — shifokor kerak.';
+    else diag = 'I-darajali yengil kuyish — sovuq suv va aloe.';
+  }
+  else if(symptom === 'tish') {
+    if(answers.pus === 'ha' || answers.swollen === 'ha') diag = 'Ehtimol yiringli yallig‘lanish (abssess) — dentistga boring.';
+    else if(answers.temp === 'ha' && (document.getElementById('painLevel').value==='kuchli')) diag = 'Sezuvchanlik yoki kariyes rivojlanishi.';
+    else diag = 'Yengil tish og‘rig‘i — uy sharoitida parvarish.';
+  }
+  else if(symptom === 'qol') {
+    if(answers.immobile === 'ha') diag = "Ehtimol to'liq sinish — zudlik bilan shifoxona!";
+    else if(answers.big_swelling === 'ha') diag = "Kuchli shish — professional tekshiruv kerak.";
+    else diag = "Yengil travma yoki charchoq; bandaj va kuzatuv.";
+  }
+  else if(symptom === 'boyin') {
+    if(answers.turn === 'ha' && answers.headache === 'ha') diag = "Nerv qisilishi yoki kuchli spazm — ehtiyotkorlik bilan cho'zish va agar ketmasa shifokor.";
+    else diag = "Bo'yin mushagi tarangligi.";
+  }
+
+  // Build details HTML
+  const resultArea = document.getElementById('resultArea');
+  resultArea.innerHTML = `
+    <div class="resultBox">
+      <h4>Taxminiy tashxis:</h4>
+      <p>${diag}</p>
+
+      <h4>Massaj / Jismoniy tavsiya:</h4>
+      <div class="massaj"><pre style="white-space:pre-wrap;margin:0;padding:0;border:none;background:none">${MASSAGE_GUIDES[symptom] || 'Massaj tavsiyasi mavjud emas.'}</pre></div>
+
+      <h4 style="margin-top:10px">Yoshga mos qo‘shimcha eslatma:</h4>
+      <p>${age < 12 ? "Eslatma: 12 yoshgacha bolalarda og'izni chayish tavsiya etilmaydi; even certain topicals should be avoided. Shuningdek, bolalar uchun dori-doʻxtor tavsiyalari faqat shifokor tomonidan belgilanadi." : "Standart uy sharoitida choralar qo‘llanadi; agar bemorning surunkali kasalligi bo‘lsa, shifokor bilan maslahat qiling."}</p>
+
+      <h4>3 kunlik davolash rejasi:</h4>
+      ${renderPlan(symptom)}
+    </div>
+  `;
+  // show update text dynamically
+  document.getElementById('updatesText').textContent = " (so‘nggi yangilanish: massaj texnikalari, yoshga mos cheklovlar qo‘shildi)";
+}
+
+/* renderPlan returns HTML table for given symptom */
+function renderPlan(symptom) {
+  const p = PLANS[symptom];
+  if(!p) return "<p>Reja mavjud emas.</p>";
+  let html = `<table class="planTable"><thead><tr><th>Kun</th><th>Reja</th></tr></thead><tbody>`;
+  for(let i=0;i<p.length;i++){
+    html += `<tr><td>${i+1}-kun</td><td>${p[i].join("<br>")}</td></tr>`;
+  }
+  html += `</tbody></table>`;
+  return html;
+}
+
+/* events */
+document.getElementById('startBtn').addEventListener('click', ()=>{
+  const symptom = document.getElementById('symptom').value;
+  const age = parseInt(document.getElementById('age').value);
+  if(!symptom){ alert('Iltimos, kasallikni tanlang'); return; }
+  if(!age || age < 1){ alert('Iltimos, to‘g‘ri yosh kiriting'); return; }
+  // if age <12 and symptom tish -> warn about chayish
+  renderQuestions(symptom);
+  // hide any previous result
+  document.getElementById('resultArea').innerHTML = '';
+});
+
+/* copy, save, print */
+document.getElementById('copyBtn').addEventListener('click', ()=> {
+  const txt = document.querySelector('.resultBox') ? document.querySelector('.resultBox').innerText : 'Natija yo‘q';
+  navigator.clipboard.writeText(txt).then(()=> alert('Natija nusxalandi!'), ()=> alert('Nusxalashda xatolik'));
+});
+document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+document.getElementById('saveBtn').addEventListener('click', ()=> {
+  const content = document.querySelector('.resultBox') ? document.querySelector('.resultBox').outerHTML : '<p>Natija bo‘sh</p>';
+  const blob = new Blob([content], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'davolash_rejasi.html';
+  a.click();
+});
+
+/* small improvement: auto remove tuzli chayish for <12 in tish */
+document.getElementById('symptom').addEventListener('change', ()=>{
+  const s = document.getElementById('symptom').value;
+  const age = parseInt(document.getElementById('age').value);
+  if(s==='tish' && age && age<12){
+    // show gentle warning in questions area
+    document.getElementById('questionsArea').innerHTML = '<p class="hint">Eslatma: 12 yoshgacha bolalarda ogʻiz chayish tavsiya etilmaydi. "Savollarni boshlash" tugmasini bosing.</p>';
+  }
+});
+
+/* accessibility: allow Enter key to start */
+document.getElementById('age').addEventListener('keydown', (e)=> { if(e.key==='Enter') document.getElementById('startBtn').click(); });
+
+</script>
+</body>
+</html>
